@@ -1,5 +1,6 @@
 package lojaVirtual;
 
+import java.math.BigDecimal;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
@@ -11,7 +12,7 @@ public class Usuario {
 	private String email;
 	private Date dataNascimento;
 	private String senhaHash;
-	private double saldo;
+	private BigDecimal saldo;
 
 	public Usuario(String nome, String endereco, String telefone, String email, Date dataNascimento, String senha) {
 		this.nome = nome;
@@ -20,7 +21,7 @@ public class Usuario {
 		this.email = email;
 		this.dataNascimento = dataNascimento;
 		this.senhaHash = hashSenha(senha);
-		this.saldo = 100.0;
+		this.saldo = new BigDecimal("100.0");
 	}
 	private String hashSenha(String senha) {
         try {
@@ -44,32 +45,49 @@ public class Usuario {
 	public String getNome() {
 		return nome;
 	}
-
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	public String getEndereco() {
 		return endereco;
 	}
-
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
 	public String getTelefone() {
 		return telefone;
 	}
-
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 	public String getEmail() {
 		return email;
 	}
-
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
-
-	public String getSenha() {
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+	public String getSenhaHash() {
 		return senhaHash;
 	}
-	
 	public boolean verificarSenha(String senha) {
         return this.senhaHash.equals(hashSenha(senha));
     }
-
-	public double getSaldo() {
+	public void setSenhaHash(String senhaHash) {
+		this.senhaHash = senhaHash;
+	}
+	public BigDecimal getSaldo() {
 		return saldo;
+	}
+	public void setSaldo(BigDecimal saldo) {
+		this.saldo = saldo;
+	}
+	public void debitarSaldo(BigDecimal valor) {
+		this.saldo = this.saldo.subtract(valor) ;
 	}
 }
