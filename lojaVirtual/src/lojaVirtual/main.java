@@ -16,7 +16,7 @@ public class main {
 				new Date(),
 				"Senha123");
 		
-		Produtos produtos = new Produtos("Iphone 12","Celular lançado em 2021",new BigDecimal("4050.56"),3);
+		Produtos produtos = new Produtos("Whey protein","isolada 100%",new BigDecimal("120.00"),10);
 		
 		System.out.println("Nome: " + produtos.getNome());
 	    System.out.println("Descrição: " + produtos.getDescricao());
