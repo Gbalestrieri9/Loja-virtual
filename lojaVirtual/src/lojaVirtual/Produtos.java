@@ -8,12 +8,18 @@ public class Produtos {
 	private String descricao;
 	private BigDecimal preco;
 	private int quantidade;
+	private int id;
 	
-	public Produtos(String nome, String descricao, BigDecimal preco, int quantidade) {
+	public Produtos(String nome, String descricao, BigDecimal preco, int quantidade, int id) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
 		this.quantidade = quantidade;
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public String getNome() {
