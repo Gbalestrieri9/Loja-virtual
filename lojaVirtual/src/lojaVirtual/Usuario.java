@@ -3,7 +3,11 @@ package lojaVirtual;
 import java.math.BigDecimal;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Usuario {
 	private String nome;
@@ -13,6 +17,8 @@ public class Usuario {
 	private Date dataNascimento;
 	private String senhaHash;
 	private BigDecimal saldo;
+	
+	ArrayList<Usuario> usuarios = new ArrayList<>();
 
 	public Usuario(String nome, String endereco, String telefone, String email, Date dataNascimento, String senha) {
 		this.nome = nome;
@@ -23,6 +29,7 @@ public class Usuario {
 		this.senhaHash = hashSenha(senha);
 		this.saldo = new BigDecimal("100.0");
 	}
+	
 	private String hashSenha(String senha) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -41,6 +48,58 @@ public class Usuario {
             return null;
         }
     }
+	
+	public void chamarUsuario() {
+		System.out.println("Nome: " + getNome());
+	    System.out.println("Endereço: " + getEndereco());
+	    System.out.println("Telefone: " + getTelefone());
+	    System.out.println("E-mail: " + getEmail());
+	    System.out.println("Data de Nascimento: " + getDataNascimento());
+	    System.out.println("Senha: " + getSenhaHash());
+	    System.out.println("Saldo: R$" + getSaldo());
+	}
+	
+	private void cadastrar() {
+		Scanner leitor = new Scanner(System.in);
+	    
+	    String nome = leitor.next();
+	    setNome(nome);
+
+	    String endereco = leitor.next();
+	    setEndereco(endereco);
+
+	    String telefone = leitor.next();
+	    setTelefone(telefone);
+
+	    String email = leitor.next();
+	    setEmail(email);
+	    
+	    System.out.println("Digite a data de aniversário (dd/MM/yyyy):");
+        String dataDeAniversarioString = leitor.nextLine();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+			setDataNascimento(dateFormat.parse(dataDeAniversarioString));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	    
+	    String senhaHash = leitor.next();
+	    setSenhaHash(senhaHash);
+	   
+	    setSaldo(new BigDecimal ("100.0"));
+
+	    salvarUsuario(this);
+	}
+	
+	private void salvarUsuario(Usuario usuarioCapturado) {
+		usuarios.add(usuarioCapturado);
+	}
+	
+	
+	public void efetuarLogin() {
+			
+	}
 
 	public String getNome() {
 		return nome;
@@ -90,4 +149,5 @@ public class Usuario {
 	public void debitarSaldo(BigDecimal valor) {
 		this.saldo = this.saldo.subtract(valor) ;
 	}
+	
 }
