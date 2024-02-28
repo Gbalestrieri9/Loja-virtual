@@ -1,43 +1,49 @@
 package lojaVirtual;
 
-import java.util.Date;
-import java.math.BigDecimal;
+import java.util.Scanner;
 
 public class MenuDeControle {
+	Scanner input = new Scanner(System.in);
 	Estoque estoque = new Estoque();
-	Produtos produto = new Produtos("omega 3","500mg", new BigDecimal("32.00"),10, 03);
-	Usuario usuario = new Usuario(
-			"Gabriel Barros",
-			"Rua Antonio Frederico 68",
-			"17982275573",
-			"gabrielbalestrieri@hotmail.com",
-			new Date(),
-			"Senha123");
-	Venda venda = new Venda(produto, usuario, 3);
-	
-	
+	Usuario usuario = new Usuario("Gabriel Barros", "Rua Antonio Frederico 68", "17982275573",
+			"gabrielbalestrieri@hotmail.com","15/02/1996", "Senha123");
+
 	private void cadastrar() {
-		usuario.efetuarLogin();
+		usuario.cadastrar();
 	}
-	
+
 	private void logar() {
-		usuario.efetuarLogin();
+		usuario.realizarLogin();
 	}
-	
+
 	private void mostrarProdutos() {
 		estoque.listarEstoque();
 	}
-	
+
 	private void comprar() {
 		estoque.listarEstoque();
-		venda.realizarVenda();
+
+		System.out.println("\n");
+		System.out.println("Qual produto voce deseja comprar?");
+		int produtoId = input.nextInt();
+		input.nextLine();
+		System.out.println("\n");
+
+		System.out.println("\n");
+		System.out.println("Qual a quantidade voce deseja?");
+		int quantidade = input.nextInt();
+		input.nextLine();
+		System.out.println("\n");
+
+		Produtos produtoSelecionado = estoque.listarEstoqueId(produtoId);
+
+		if (produtoSelecionado != null) {
+			Venda venda = new Venda(produtoSelecionado, usuario, quantidade);
+			venda.realizarVenda();
+		}
 	}
 	
-	private void sair() {
-		
-	}
-
-	public void controle(int acaoSelecionada) {
+	public void controle(int acaoSelecionada, int produtoId, int quantidade) {
 		switch (acaoSelecionada) {
 		case 1:
 			cadastrar();
@@ -50,9 +56,6 @@ public class MenuDeControle {
 			break;
 		case 4:
 			comprar();
-			break;
-		case 5:
-			sair();
 			break;
 		}
 	}
