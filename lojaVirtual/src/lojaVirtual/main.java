@@ -13,24 +13,30 @@ public class main {
 		boolean executando = true;
 				
 		while(executando) {
-			System.out.println("---MENU DE CONTROLE---\n"
-					+ "1.Se cadastre\n"
-					+ "2.Logar\n"
-					+ "3.Visualizar os produtos\n"
-					+ "4.Efetuar compra\n"
-					+ "5.Sair \n");
-			
-			System.out.println("Digite a numeração que deseja selecionar acima:");
-			acaoDigitada = input.nextInt();
-			input.nextLine();
-			System.out.println("\n");
-			
-			if(acaoDigitada == 5) {
-				executando = false;
-				input.close();
-				System.out.println("Programa finalizado com sucesso!");
-			}else {
-				menu.controle(acaoDigitada, produtoId, quantidade);
+			try {
+				System.out.println("---MENU DE CONTROLE---\n"
+						+ "1.Se cadastre\n"
+						+ "2.Logar\n"
+						+ "3.Visualizar os produtos\n"
+						+ "4.Efetuar compra\n"
+						+ "5.Visualize seus dados\n"
+						+ "6.Sair \n");
+				
+				System.out.println("Digite a numeração que deseja selecionar acima:");
+				acaoDigitada = input.nextInt();
+				input.nextLine();
+				System.out.println("\n");
+				
+				if(acaoDigitada == 6) {
+					executando = false;
+					input.close();
+					System.out.println("Programa finalizado com sucesso!");
+				}else {
+					menu.controle(acaoDigitada, produtoId, quantidade);
+				}
+			}catch(Exception e) {
+				System.out.println("Digite apenas os numeros disponiveis no menu de controle\n");
+				input.nextLine();
 			}
 		}	
 	}
