@@ -38,6 +38,26 @@ public class Produtos {
 		return quantidade;
 	}
 	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public void estoque (int quantidadeVendida) {
 		this.quantidade -= quantidadeVendida;
 	}

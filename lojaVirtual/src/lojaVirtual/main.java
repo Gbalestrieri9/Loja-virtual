@@ -1,6 +1,4 @@
 package lojaVirtual;
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.Scanner;
 
 public class main {
@@ -10,8 +8,10 @@ public class main {
 		MenuDeControle menu = new MenuDeControle();
 		
 		int acaoDigitada;
+		int produtoId=0;
+		int quantidade= 0;
 		boolean executando = true;
-		
+				
 		while(executando) {
 			System.out.println("---MENU DE CONTROLE---\n"
 					+ "1.Se cadastre\n"
@@ -25,7 +25,13 @@ public class main {
 			input.nextLine();
 			System.out.println("\n");
 			
-			menu.controle(acaoDigitada);
+			if(acaoDigitada == 5) {
+				executando = false;
+				input.close();
+				System.out.println("Programa finalizado com sucesso!");
+			}else {
+				menu.controle(acaoDigitada, produtoId, quantidade);
+			}
 		}	
 	}
 }
