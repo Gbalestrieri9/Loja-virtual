@@ -50,29 +50,33 @@ public class Usuario {
     }
 
     public void chamarUsuario() {
+    	System.out.println("Seu perfil: ");
         System.out.println("Nome: " + getNome());
-        System.out.println("Endereço: " + getEndereco());
         System.out.println("Telefone: " + getTelefone());
         System.out.println("E-mail: " + getEmail());
         System.out.println("Data de Nascimento: " + getDataNascimento());
-        System.out.println("Saldo: R$" + getSaldo());
+        System.out.println("Saldo disponivel: R$" + getSaldo()+ "\n");
     }
 
     public void cadastrar() {
         System.out.println("Coloque seu nome:");
         String nome = leitor.next();
         setNome(nome);
+        
+        leitor.nextLine();
 
         System.out.println("Coloque seu endereço:");
         String endereco = leitor.next();
         setEndereco(endereco);
+        
+        leitor.nextLine();
 
         System.out.println("Coloque seu telefone:");
-        String telefone = leitor.next();
+        String telefone = leitor.nextLine();
         setTelefone(telefone);
 
         System.out.println("Coloque seu email:");
-        String email = leitor.next();
+        String email = leitor.nextLine();
         setEmail(email);
 
         System.out.println("Digite a data de aniversário (dd/MM/yyyy):");
@@ -86,11 +90,15 @@ public class Usuario {
         setSaldo(new BigDecimal("100.0"));
 
         adicionarUsuario(this);
+        
+        System.out.println("Usuario criado com sucesso\n");
     }
 
     public boolean realizarLogin() {
         System.out.println("Nome de login:");
         String nomeUsuario = leitor.next();
+        
+        leitor.nextLine();
 
         System.out.println("Senha:");
         String senha = leitor.next();
